@@ -24,7 +24,7 @@ const getFormSchema = z.object({
     description: z.string()
 })
 
-const baseApiUrl = process.env.VERCEL_ENV === "development" ? "http://localhost:3000" : "https://app.attractivo.ca";
+const baseApiUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://app.attractivo.ca";
 
 export default function SubmitLead() {
     const router = useRouter()
@@ -50,7 +50,7 @@ export default function SubmitLead() {
     }
 
     return (
-        <div className="md:h-screen md:overflow-hidden md:flex">
+        <div className="flex flex-col min-h-screen md:min-h-0 md:h-screen md:overflow-hidden md:flex-row">
             <div className="flex flex-col p-8 md:p-12 md:w-2/5 md:max-w-xl bg-neutral-100">
                 <h1 className="text-2xl leading-tight"><span className="underline">{data?.companyName}</span> partners with Attractivo for customer management.</h1>
                 <p className="mt-2 leading-snug text-neutral-600">{data?.description}</p>
@@ -64,7 +64,7 @@ export default function SubmitLead() {
                     <p>Privacy</p>
                 </div>
             </div>
-            <div className="flex-1 p-8 overflow-auto md:p-12">
+            <div className="flex flex-1 p-8 overflow-auto md:p-12">
                 {!!data && <SubmitForm data={data} />}
             </div>
             <div className="p-8 mt-auto space-y-2 text-sm md:hidden text-neutral-600 bg-neutral-100">
@@ -134,7 +134,7 @@ function SubmitForm({ data }: { data: z.infer<typeof getFormSchema> }) {
 
     if (submitted) {
         return (
-            <div className="flex items-center justify-center h-full">
+            <div className="flex items-center justify-center w-full h-full my-auto">
                 <div className="text-center">
                     <CheckCircle className="w-8 h-8 mx-auto mb-2 text-green-600" />
                     <p className="text-2xl leading-tight">You&apos;re all set!</p>
