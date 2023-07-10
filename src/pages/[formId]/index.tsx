@@ -109,7 +109,7 @@ function SubmitForm({ data }: { data: z.infer<typeof getFormSchema> }) {
     const { mutate, isLoading } = useMutation<void, unknown, FormValues>({
         mutationFn: async (data) => {
             try {
-                await fetch(`http://localhost:3000/api/form/${router.query.formId}`, {
+                await fetch(`${baseApiUrl}/api/form/${router.query.formId}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
