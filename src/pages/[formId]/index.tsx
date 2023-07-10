@@ -24,13 +24,15 @@ const getFormSchema = z.object({
     description: z.string()
 })
 
+const baseApiUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://app.attractivo.ca";
+
 export default function SubmitLead() {
     const router = useRouter()
 
     const { data, isLoading } = useQuery({
         queryKey: ["form", router.query.formId],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:3000/api/form/${router.query.formId}`)
+            const response = await fetch(`${baseApiUrl}/api/form/${router.query.formId}`)
 
             const formData = await response.json()
 
