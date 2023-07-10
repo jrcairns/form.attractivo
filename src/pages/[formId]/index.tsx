@@ -24,7 +24,7 @@ const getFormSchema = z.object({
     description: z.string()
 })
 
-const baseApiUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://app.attractivo.ca";
+const baseApiUrl = process.env.VERCEL_ENV === "development" ? "http://localhost:3000" : "https://app.attractivo.ca";
 
 export default function SubmitLead() {
     const router = useRouter()
